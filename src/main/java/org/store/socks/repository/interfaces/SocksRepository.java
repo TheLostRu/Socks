@@ -18,7 +18,7 @@ public interface SocksRepository {
    * @param socks the socks
    * @throws NullPointerException the null pointer exception
    */
-  void input(SocksDto socks) throws NullPointerException;
+  void input(SocksDto socks);
 
   /**
    * Output.
@@ -28,7 +28,7 @@ public interface SocksRepository {
    * @throws QuantityException    the quantity exception
    * @throws ExistException       the exist exception
    */
-  void output(SocksDto socks) throws NullPointerException, QuantityException, ExistException;
+  void output(SocksDto socks) throws QuantityException, ExistException;
 
   /**
    * Gets all where more than values.
@@ -58,5 +58,5 @@ public interface SocksRepository {
    * @return the all where equals than values
    * @throws ExistException the exist exception
    */
-  List<Socks> getAllWhereEqualsThanValues(Integer cottonPart, String color) throws ExistException;
+  List<Socks> getAllWhereValuesEquals(Integer cottonPart, String color) throws ExistException;
 }

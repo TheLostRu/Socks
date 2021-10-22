@@ -14,7 +14,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Socks {
 
-
   private Integer id;
   private String color;
   private Integer cottonPart;

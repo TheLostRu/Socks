@@ -37,16 +37,6 @@ public class SocksExceptionHandler {
   }
 
   /**
-   * Handler null pointer exception response entity.
-   *
-   * @return the response entity
-   */
-  @ExceptionHandler(NullPointerException.class)
-  public ResponseEntity<String> handlerNullPointerException() {
-    return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
-  }
-
-  /**
    * Handler incorrect parameter exception response entity.
    *
    * @return the response entity

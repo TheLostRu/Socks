@@ -31,7 +31,7 @@ public class SocksController {
    * The Service.
    */
   @Autowired
-  SocksService service;
+  private SocksService service;
 
   /**
    * Input.

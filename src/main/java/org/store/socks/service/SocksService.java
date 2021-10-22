@@ -62,7 +62,7 @@ public class SocksService {
     switch (operation) {
       case "moreThan" -> result = repository.getAllWhereMoreThanValues(cottonPart, color);
       case "lessThan" -> result = repository.getAllWhereLessThanValues(cottonPart, color);
-      case "equal" -> result = repository.getAllWhereEqualsThanValues(cottonPart, color);
+      case "equal" -> result = repository.getAllWhereValuesEquals(cottonPart, color);
       default -> throw new IncorrectParameterException("Incorrect operation");
     }
     return result;
