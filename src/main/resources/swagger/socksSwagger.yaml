@@ -1,0 +1,122 @@
+openapi: "3.0.2"
+info:
+  description: "Socks storage"
+  version: "2.2.8"
+  title: "Socks"
+  contact:
+    email: "ivanivashkiv55@gmail.com"
+servers:
+  - url: http://localhost:8080/api
+tags:
+  - name: "socks"
+    description: "Working with socks"
+paths:
+  /socks/income:
+    post:
+      tags:
+        - "socks"
+      summary: "Register socks income"
+      operationId: "input"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocksDto'
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+        "500":
+          description: "Internal server error"
+  /socks/outcome:
+    post:
+      tags:
+        - "socks"
+      summary: "Register socks outcome"
+      operationId: "output"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocksDto'
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request or quantity more than storage have"
+        "500":
+          description: "Internal server error"
+  /socks:
+    get:
+      tags:
+        - "socks"
+      summary: "Gets all socks with parameters satisfying input parameters"
+      operationId: "get"
+      parameters:
+        - name: "cottonPart"
+          in: "path"
+          description: "Cotton part which compare with storage"
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: "color"
+          in: "path"
+          description: "Color which compare with storage"
+          required: true
+          schema:
+            type: string
+        - name: "operation"
+          in: "path"
+          description: "Operation of comparison(one of: moreThan, lessThan, equal)"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Socks'
+        "400":
+          description: "Bad request or storage hove no such socks or incorrect operation"
+        "500":
+          description: "Internal server error"
+components:
+  schemas:
+    SocksDto:
+      type: object
+      properties:
+        cottonPart:
+          type: integer
+          format: int32
+          nullable: false
+        color:
+          type: string
+          nullable: false
+        quantity:
+          type: integer
+          format: int32
+          nullable: false
+    Socks:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: false
+        cottonPart:
+          type: integer
+          format: int32
+          nullable: false
+        color:
+          type: string
+          nullable: false
+        quantity:
+          type: integer
+          format: int32
+          nullable: false
