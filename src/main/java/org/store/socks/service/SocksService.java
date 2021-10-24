@@ -28,9 +28,8 @@ public class SocksService {
    * Input.
    *
    * @param socksDto the socks dto
-   * @throws NullPointerException the null pointer exception
    */
-  public void input(SocksDto socksDto) throws NullPointerException {
+  public void input(SocksDto socksDto) {
     repository.input(socksDto);
   }
 
@@ -38,11 +37,10 @@ public class SocksService {
    * Output.
    *
    * @param socksDto the socks dto
-   * @throws NullPointerException the null pointer exception
    * @throws QuantityException    the quantity exception
    * @throws ExistException       the exist exception
    */
-  public void output(SocksDto socksDto) throws NullPointerException, QuantityException, ExistException {
+  public void output(SocksDto socksDto) throws QuantityException, ExistException {
     repository.output(socksDto);
   }
 

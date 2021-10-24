@@ -59,4 +59,6 @@ public interface SocksRepository {
    * @throws ExistException the exist exception
    */
   List<Socks> getAllWhereValuesEquals(Integer cottonPart, String color) throws ExistException;
+
+  void deleteAll();
 }

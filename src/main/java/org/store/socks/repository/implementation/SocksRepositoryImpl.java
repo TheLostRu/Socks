@@ -106,6 +106,11 @@ public class SocksRepositoryImpl implements SocksRepository {
     return result;
   }
 
+  @Override
+  public void deleteAll() {
+    jdbcTemplate.update("TRUNCATE TABLE socks");
+  }
+
   private Boolean isExistInBD(SocksDto socks) {
     var exists = jdbcTemplate.queryForObject(
         "SELECT exists(SELECT id FROM socks WHERE color=? AND cotton_part=?) AS exists",

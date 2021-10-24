@@ -37,7 +37,6 @@ public class SocksController {
    * Input.
    *
    * @param socksDto the socks dto
-   * @throws NullPointerException the null pointer exception
    */
   @PostMapping("/income")
   public void input(@RequestBody SocksDto socksDto) throws NullPointerException {
@@ -48,13 +47,12 @@ public class SocksController {
    * Output.
    *
    * @param socksDto the socks dto
-   * @throws NullPointerException the null pointer exception
    * @throws QuantityException    the quantity exception
    * @throws ExistException       the exist exception
    */
   @PostMapping("/outcome")
   public void output(@RequestBody SocksDto socksDto) throws
-      NullPointerException, QuantityException, ExistException {
+      QuantityException, ExistException {
     service.output(socksDto);
   }
 
