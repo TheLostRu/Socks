@@ -29,7 +29,8 @@ public class SocksService {
    *
    * @param socksDto the socks dto
    */
-  public void input(SocksDto socksDto) {
+  public void input(SocksDto socksDto) throws QuantityException {
+    checkFields(socksDto.getCottonPart(), socksDto.getQuantity());
     repository.input(socksDto);
   }
 
@@ -41,6 +42,7 @@ public class SocksService {
    * @throws ExistException       the exist exception
    */
   public void output(SocksDto socksDto) throws QuantityException, ExistException {
+    checkFields(socksDto.getCottonPart(), socksDto.getQuantity());
     repository.output(socksDto);
   }
 
@@ -55,7 +57,8 @@ public class SocksService {
    * @throws IncorrectParameterException the incorrect parameter exception
    */
   public List<Socks> get(Integer cottonPart, String color, String operation)
-      throws ExistException, IncorrectParameterException {
+      throws ExistException, IncorrectParameterException, QuantityException {
+    checkFields(cottonPart, 50);
     List<Socks> result;
     switch (operation) {
       case "moreThan" -> result = repository.getAllWhereMoreThanValues(cottonPart, color);
@@ -64,5 +67,11 @@ public class SocksService {
       default -> throw new IncorrectParameterException("Incorrect operation");
     }
     return result;
+  }
+
+  private void checkFields(Integer cottonPart, Integer quantity) throws QuantityException {
+    if (quantity < 0 || (cottonPart < 0 || cottonPart >100)) {
+      throw new QuantityException("Invalid data");
+    }
   }
 }

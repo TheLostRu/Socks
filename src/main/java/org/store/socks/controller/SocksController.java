@@ -37,9 +37,10 @@ public class SocksController {
    * Input.
    *
    * @param socksDto the socks dto
+   * @throws QuantityException the quantity exception
    */
   @PostMapping("/income")
-  public void input(@RequestBody SocksDto socksDto) throws NullPointerException {
+  public void input(@RequestBody SocksDto socksDto) throws QuantityException {
     service.input(socksDto);
   }
 
@@ -47,8 +48,8 @@ public class SocksController {
    * Output.
    *
    * @param socksDto the socks dto
-   * @throws QuantityException    the quantity exception
-   * @throws ExistException       the exist exception
+   * @throws QuantityException the quantity exception
+   * @throws ExistException    the exist exception
    */
   @PostMapping("/outcome")
   public void output(@RequestBody SocksDto socksDto) throws
@@ -64,18 +65,20 @@ public class SocksController {
    * @param operation  the operation
    * @return the list
    * @throws ExistException              the exist exception
+   * @throws QuantityException           the quantity exception
    * @throws IncorrectParameterException the incorrect parameter exception
    */
   @GetMapping("")
   public List<Socks> get(@RequestParam Integer cottonPart,
       @RequestParam String color, @RequestParam String operation)
-      throws ExistException, IncorrectParameterException {
+      throws ExistException, IncorrectParameterException, QuantityException {
     return service.get(cottonPart, color, operation);
   }
 
   /**
    * Gets swagger
    * url:http://localhost:8080/swagger-ui/index.html?configUrl=/api/swagger-config#/socks/input
+   * link: /api/socks/swagger
    *
    * @return the swagger
    */
